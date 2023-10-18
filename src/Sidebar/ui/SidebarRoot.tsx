@@ -49,11 +49,11 @@ import { iTutorialSteps, iTutorialNextStep, ITutorial } from "../../InteractiveT
 import { getAvailableCreatePrograms } from "../../Programs/ProgramHelpers";
 import { Settings } from "../../Settings/Settings";
 import { AugmentationName } from "@enums";
+import { getEnumHelper } from "../../utils/EnumHelper";
 
 import { ProgramsSeen } from "../../Programs/ui/ProgramsRoot";
 import { InvitationsSeen } from "../../Faction/ui/FactionsRoot";
 import { hash } from "../../hash/hash";
-import { Locations } from "../../Locations/Locations";
 import { useRerender } from "../../ui/React/hooks";
 
 const RotatedDoubleArrowIcon = React.forwardRef(function RotatedDoubleArrowIcon(
@@ -162,7 +162,9 @@ export function SidebarRoot(props: { page: Page }): React.ReactElement {
   const clickPage = useCallback(
     (page: Page) => {
       if (page === Page.Job) {
-        Router.toPage(page, { location: Locations[Object.keys(Player.jobs)[0]] });
+        Router.toPage(page, {
+          company: getEnumHelper("CompanyName").fuzzyGetMember(Object.keys(Player.jobs)[0], true),
+        });
       } else if (page == Page.ScriptEditor) {
         Router.toPage(page, {});
       } else if (isSimplePage(page)) {

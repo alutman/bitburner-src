@@ -32,6 +32,7 @@ import { GameOptionsRoot } from "../GameOptions/ui/GameOptionsRoot";
 import { SleeveRoot } from "../PersonObjects/Sleeve/ui/SleeveRoot";
 import { HacknetRoot } from "../Hacknet/ui/HacknetRoot";
 import { GenericLocation } from "../Locations/ui/GenericLocation";
+import { Jobs } from "../Locations/ui/Jobs";
 import { LocationCity } from "../Locations/ui/City";
 import { ProgramsRoot } from "../Programs/ui/ProgramsRoot";
 import { ScriptEditorRoot } from "../ScriptEditor/ui/ScriptEditorRoot";
@@ -314,7 +315,10 @@ export function GameRoot(): React.ReactElement {
       mainPage = <LocationCity />;
       break;
     }
-    case Page.Job:
+    case Page.Job: {
+      mainPage = <Jobs company={pageWithContext.company} />;
+      break;
+    }
     case Page.Location: {
       mainPage = <GenericLocation loc={pageWithContext.location} />;
       break;
