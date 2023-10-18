@@ -24,6 +24,7 @@ export function CorruptableText(props: CorruptableTextProps): JSX.Element {
   const [content, setContent] = useState(props.content);
 
   useEffect(() => {
+    setContent(props.content);
     let counter = 5;
     const timers: number[] = [];
     const intervalId = setInterval(() => {
